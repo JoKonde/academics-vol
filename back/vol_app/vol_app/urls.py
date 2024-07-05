@@ -1,5 +1,5 @@
 """
-URL configuration for vol project.
+URL configuration for vol_app project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -16,7 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from flight_app.views import CustomTokenObtainPairView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+     path('admin/', admin.site.urls),  # Assurez-vous que cela fonctionne bien
+    #path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # Autres URLs de votre application
 ]
